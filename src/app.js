@@ -1,6 +1,7 @@
 const express = require("express");
 const db = require("./utils/database");
 const Todo = require("./models/todoModel");
+const todoRoutes = require("./routes/todoRoutes");
 
 const PORT = 8000;
 
@@ -22,10 +23,8 @@ db.sync()
 
 const app = express();
 
-app.get("/", (req, res) => {
-  res.send("asdasd");
-});
+app.use(express.json());
 
-app.listen(PORT, () => {
-  console.log("first");
-});
+app.use(todoRoutes);
+
+app.listen(PORT, () => {});
